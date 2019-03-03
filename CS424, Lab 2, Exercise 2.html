@@ -89,10 +89,7 @@
                 
             // TODO: Anything else to do when mouse is first pressed?
         }   
-        if(document.getElementById("clearButton").value) {
-            graphics.fillStyle = "white";
-                    graphics.fillRect(0,0,canvas.width,canvas.height);
-        }
+        
         
 
                 // doClear = xd();
@@ -132,8 +129,8 @@
             }
             if(look == 1) {
                 
-                graphics.fillOval(x,y,80,40);
-                graphics.strokeOval(x,y,80,40);
+                graphics.fillOval(x,y,40,20);
+                graphics.strokeOval(x,y,40,20);
                 
             }
             else {
