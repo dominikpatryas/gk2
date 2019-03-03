@@ -61,7 +61,7 @@
         
         var colorChoice;  // Integer code for the selected color in the "colorChoide"
                           // popup menu.  The value is assigned in doMouseDown.
-        
+        var look;
         function doMouseDown(evt) {
                 // This function is called when the user presses a button on the mouse.
                 // Only the main mouse button will start a drag.
@@ -83,17 +83,21 @@
                 document.addEventListener("mouseup", doMouseUp, false);
             }
             colorChoice = Number(document.getElementById("colorChoice").value);
+            look = Number(document.getElementById("look").value);
             
-            doClear = xd();
 
-                function xd() {
-                    graphics.fillStyle = "black";
-                    graphics.fillRect(0,0,canvas.width,canvas.height);
-                }
-            document.getElementById("clearButton").onclick = doClear;
+                
             // TODO: Anything else to do when mouse is first pressed?
         }   
+        if(document.getElementById("clearButton").value) {
+            graphics.fillStyle = "white";
+                    graphics.fillRect(0,0,canvas.width,canvas.height);
+        }
         
+
+                // doClear = xd();
+                // document.getElementById("clearButton").onclick = doClear;
+
         function doMouseMove(evt) {
                 // This function is called when the user moves the mouse during a drag.
             if (!dragging) {
@@ -126,9 +130,16 @@
             else if (colorChoice == 4) {
                 graphics.fillStyle = "black";
             }
+            if(look == 1) {
+                
+                graphics.fillOval(x,y,80,40);
+                graphics.strokeOval(x,y,80,40);
+                
+            }
+            else {
             graphics.fillRect(x-20,y-20,40,40);
             graphics.strokeRect(x-20,y-20,40,40);
-            
+            }
             /*------------------------------------------------------------*/
             
             prevX = x;  // update prevX,prevY to prepare for next call to doMouseMove
@@ -255,12 +266,17 @@
         graphics.fillStyle = "white";
         graphics.fillRect(0,0,canvas.width,canvas.height);
     }
+
     
+
+    function clearSq() {
+            graphics.fillStyle = "white";
+                    graphics.fillRect(0,0,canvas.width,canvas.height);
+                }
 </script>
 </head>
 <body onload="init()"> <!-- the onload attribute here is what calls the init() function -->
-    <button id="clearButton" >Clear</button>
-<h2>Lab 2, Exercise 2: Mousing</h2>
+    <h2>Lab 2, Exercise 2: Mousing</h2>
 
 <noscript>
     
@@ -277,6 +293,13 @@
         <option value="4">Black</option>
         
     </select>
+    <button id="clearButton" onclick="clearSq()" >Clear</button>
+    <b>Look:</b>
+    <select id="look">
+        <option value="0">Square</option>
+        <option value="1">Oval</option>
+    </select>
+
 </p>
 
 <div id="canvasholder">
